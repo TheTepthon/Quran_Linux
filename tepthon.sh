@@ -1,4 +1,4 @@
-branch=main
+branch=master
 git clone -b $branch https://github.com/anes10a/quran /root/anes10a
 cp quran/.env /root/anes10a/.env
 cd /root/anes10a
