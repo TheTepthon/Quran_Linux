@@ -1,4 +1,4 @@
-name: Jmthon Workflow
+name: tepthon Workflow
 
 on:
     push:
@@ -24,15 +24,15 @@ jobs:
            git config --global user.email ${{ secrets.EMAIL }}
            git config --global credential.helper store
            echo "https://${{ secrets.NAME }}:${{ secrets.TOKEN }}@github.com" > ~/.git-credentials
-       - name: cloning jmthon
+       - name: cloning tepthon
          continue-on-error: true
          run: |
-           git clone https://${{ secrets.NAME }}:${{ secrets.TOKEN }}@${{ secrets.REPO }} sbb_b0
-       - name: Running jmthon
+           git clone https://${{ secrets.NAME }}:${{ secrets.TOKEN }}@${{ secrets.REPO }} tepthon
+       - name: Running tepthon
          timeout-minutes: 120
          continue-on-error: true
          run: |
-           sudo sh jmthon.sh
+           sudo sh tepthon.sh
        - name: Loop deploy
          continue-on-error: true
          run: |
@@ -41,4 +41,4 @@ jobs:
               echo $(date -u +%T%P) >> loop.txt
               git add loop.txt
               git commit -m "Workflow : Loop $(date -u +%D-%T%P)"
-              git push -q https://${{ secrets.TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:jmthon
+              git push -q https://${{ secrets.TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:tepthon
